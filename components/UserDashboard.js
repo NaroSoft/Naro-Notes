@@ -28,7 +28,7 @@ export default function UserDashboard() {
         if (!todo) { return }
         const newKey = Object.keys(todos).length === 0 ? 1 : Math.max(...Object.keys(todos)) + 1
         setTodos({ ...todos, [newKey]: todo })
-        const userRef = doc(db, 'users', currentUser.uid)
+        const userRef = doc(db, 'group_info', currentUser.uid)
         await setDoc(userRef, {
             'todos': {
                 [newKey]: todo
@@ -79,12 +79,43 @@ export default function UserDashboard() {
     return (
         <>
         <Header/>
+
+   
         <div className='w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col flex-1 py-4 gap-3 sm:gap-5'>
             
+            
             <div className='flex items-stretch'>
-                <input type='text' placeholder="Enter Notes" value={todo} onChange={(e) => setTodo(e.target.value)} className="outline-none p-3 text-base sm:text-lg text-slate-900 flex-1" />
-                <button onClick={handleAddTodo} className='w-fit px-4 sm:px-6 py-2 sm:py-3 bg-blue-800 text-white font-medium text-base duration-300 hover:opacity-40'>ADD</button>
+                <label className='text-1xl sm:text-2xl'>Member Name</label>
             </div>
+
+            <div className='flex items-stretch'>
+                <input type='text' placeholder="Full Name" value={todo} onChange={(e) => setTodo(e.target.value)} className="outline-none p-3 text-base sm:text-lg text-slate-900 flex-1" />
+                </div>
+
+            <div className='flex items-stretch'>
+                <label className='text-1xl sm:text-2xl'>Phone Number 1</label>
+            </div>
+
+            <div className='flex items-stretch'>
+                <input type='text' placeholder="Full Name" value={todo} onChange={(e) => setTodo(e.target.value)} className="outline-none p-3 text-base sm:text-lg text-slate-900 flex-1" />
+                 </div>
+
+            <div className='flex items-stretch'>
+                <label className='text-1xl sm:text-2xl'>Phone Number 2</label>
+            </div>
+
+            <div className='flex items-stretch'>
+                <input type='text' placeholder="Full Name" value={todo} onChange={(e) => setTodo(e.target.value)} className="outline-none p-3 text-base sm:text-lg text-slate-900 flex-1" />
+                 </div>
+
+            <button onClick={handleAddTodo} className='w-full max-w-[40ch] border border-white border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-white after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900'>
+                <h2 className='relative z-20'>
+                    Add Contact
+                </h2>
+            </button>
+
+           
+
             {(loading) && (<div className='flex-1 grid place-items-center'>
                 <i className="fa-solid fa-spinner animate-spin text-6xl"></i>
             </div>)}
